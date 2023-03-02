@@ -1,0 +1,53 @@
+<!-- IDENTIFY WHETHER THE GIVEN LINKED LIST IS CYCLIC OR NOT? IN JAVASCRIPT -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Node {
+            constructor(val) {
+                this.data = val;
+                this.next = null;
+            }
+        }
+
+        function isCircular(head) {
+            if (head == null)
+                return true;
+
+            node = head.next;
+
+            while (node != null && node != head)
+                node = node.next;
+
+            return (node == head);
+        }
+
+        function newNode(data) {
+            temp = new Node();
+            temp.data = data;
+            temp.next = null;
+            return temp;
+        }
+
+        head = newNode(1);
+        head.next = newNode(2);
+        head.next.next = newNode(0);
+        head.next.next.next = newNode(4);
+
+        document.write(isCircular(head) ? "YES<br>" : "NO<br>");
+        head.next.next.next.next = head;
+        // head.next.next = head
+
+        document.write(isCircular(head) ? "TRUE<br>" : "FALSE<br>");
+    </script>
+</body>
+
+</html>
